@@ -14,8 +14,10 @@
         <meta content="Grenviro Monitoring" name="afrijal" />
         <meta content="{{csrf_token()}}" name="csrf-token" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        @stack('style-css')
 
+        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
         <link href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/vendors/base/vendor.bundle.base.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
@@ -23,7 +25,7 @@
         <script src="{{asset('assets/js/template.js')}}"></script>
         <script src="{{asset('assets/vendors/chart.js/Chart.min.js')}}"></script>
         <script src="{{asset('assets/js/chart.js')}}"></script>
-        <!-- Scripts -->
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
@@ -53,5 +55,7 @@
                 </div>
               </footer>
         </div>
+        @stack('javascript')
+
     </body>
 </html>

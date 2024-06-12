@@ -67,7 +67,7 @@
                                         @csrf
                                         <div class="mb-3 row">
                                             <div class="col-12">
-                                                <label for="email" class="form-label">Email / NIP</label>
+                                                <label for="email" class="form-label">Email</label>
                                                 <input type="text" name="email" value="{{old('email')}}" class="form-control" id="email" autofocus placeholder="Enter email or NIP">
                                             </div>
                                         </div>

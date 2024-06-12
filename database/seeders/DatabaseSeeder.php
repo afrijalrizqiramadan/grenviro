@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserRolePermissionSeeder::class);
+        $this->call(AutoSettingsSeeder::class);
+        $this->call(CustomersSeeder::class);
+        $this->call(DataAktuatorSeeder::class);
+        $this->call(DataSensorSeeder::class);
+        $this->call(DevicesSeeder::class);
+        $this->call(DeliveryStatusSeeder::class);
+        $this->call(MaintenancesSeeder::class);
+        $this->call(TechniciansSeeder::class);
     }
 }

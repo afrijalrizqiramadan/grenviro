@@ -1,10 +1,10 @@
-<?php include 'header.php'; 
+<?php include 'header.php';
 session_start();
  include 'config.php';
 
 
- $user_id = $_SESSION['user_id']; 
- $role = $_SESSION['role']; 
+ $user_id = $_SESSION['user_id'];
+ $role = $_SESSION['role'];
 
 if($role=="admin"){
         $sql = "SELECT * FROM administrators WHERE user_id='$user_id'";
@@ -23,9 +23,9 @@ $result = mysqli_query($conn, $sql);
         $capacity = $row['capacity'];
         $location = $row['location'];
         $registration_date = $row['registration_date'];
-    } 
+    }
 ?>
-	
+
 		<script type="text/javascript">
 		<!--
 		function showTime() {
@@ -66,7 +66,7 @@ $result = mysqli_query($conn, $sql);
 		<div class="container-fluid page-body-wrapper">
 			<div class="main-panel">
 				<div class="content-wrapper">
-					
+
 											   <br>
 
 					<div class="row">
@@ -77,7 +77,7 @@ $result = mysqli_query($conn, $sql);
 										<div class="card-body">
 											<div class="row">
 												<div class="col-lg-8">
-												 
+
 													<h2 class="font-weight-bold text-dark"><?php echo $location?></h2>
 		<script type='text/javascript'>
 			<!--
@@ -130,7 +130,7 @@ $result = mysqli_query($conn, $sql);
                           <td>15 May 2017</td>
                           <td><label class="badge badge-warning">In progress</label></td>
                         </tr>
-                        
+
                       </tbody>
                     </table>
                   </div>
@@ -172,12 +172,12 @@ $result = mysqli_query($conn, $sql);
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 						</div>
 						<div class="col-sm-8 flex-column d-flex stretch-card">
 							<div class="row">
-							
+
 								<div class="col-lg-4 d-flex grid-margin stretch-card">
 									<div class="card sale-diffrence-border">
 										<div class="card-body">
@@ -219,9 +219,9 @@ $result = mysqli_query($conn, $sql);
 								 <div class="col-md-8 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                 
+
                   <h4 class="card-title">Set Auto</h4>
-                  
+
 
 
 <div class="form-group row">
@@ -236,16 +236,16 @@ $result = mysqli_query($conn, $sql);
                       <label for="exampleInputUsername1">Batas Bawah</label>
                       <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Batas Bawah">
                     </div>
-                   
+
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                      </form>                 
+                                      </form>
                     </div>
                     <div class="col">
                         <p class="mb-2">Success</p>
                       <label class="toggle-switch toggle-switch-success">
                         <input type="checkbox" checked>
                         <span class="toggle-slider round"></span>
-                      </label>                      
+                      </label>
                     </div>
                     </div>
                   </form>
@@ -253,7 +253,7 @@ $result = mysqli_query($conn, $sql);
             </div>								</div>
 
 					    	</div>
-					    	
+
 						</div>
 						<div class="row">
 						<div class="col-sm-6 mb-4 mb-xl-0">
@@ -276,13 +276,13 @@ $result = mysqli_query($conn, $sql);
 								<div class="pe-1 mb-3 mb-xl-0">
 										<button type="button" class="btn btn-outline-inverse-info btn-icon-text">
 											Feedback
-											<i class="mdi mdi-message-outline btn-icon-append"></i>                          
+											<i class="mdi mdi-message-outline btn-icon-append"></i>
 										</button>
 								</div>
 								<div class="pe-1 mb-3 mb-xl-0">
 										<button type="button" class="btn btn-outline-inverse-info btn-icon-text">
 											Help
-											<i class="mdi mdi-help-circle-outline btn-icon-append"></i>                          
+											<i class="mdi mdi-help-circle-outline btn-icon-append"></i>
 									</button>
 								</div>
 								<!--<div class="pe-1 mb-3 mb-xl-0">-->
@@ -297,7 +297,7 @@ $result = mysqli_query($conn, $sql);
 					</br>
 					</br>
 					</br>
-					
+
 					<div class="row">
 						<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
 							<div class="card">
@@ -318,5 +318,4 @@ $result = mysqli_query($conn, $sql);
 						</div>
 					</div>
 				</div>
-				
-	
+
