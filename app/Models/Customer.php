@@ -7,8 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $table = 'customers';
     use HasFactory;
     protected $guarded = [];
+    protected $fillable = [
+        'device_id',
+        'name',
+        // tambahkan kolom lain yang diperlukan
+    ];
+
+    public function dataSensors()
+    {
+        return $this->hasMany(DataSensor::class, 'device_id', 'devices_id');
+    }
 
     public function user()
     {
@@ -19,16 +30,4 @@ class Customer extends Model
         return $this->belongsTo(Device::class, 'device_id');
     }
 
-    public function getImage()
-    {
-        if (substr($this->images, 0, 5) == "https") {
-            return $this->images;
-        }
-
-        if ($this->images) {
-            return asset('assets/images/customer/' . $this->images);
-        }
-
-        return 'https://via.placeholder.com/500x500.png?text=No+Cover';
-    }
 }

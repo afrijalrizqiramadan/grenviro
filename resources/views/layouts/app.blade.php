@@ -15,7 +15,6 @@
         <meta content="{{csrf_token()}}" name="csrf-token" />
         <!-- App favicon -->
         @stack('style-css')
-
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
         <link href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -25,10 +24,12 @@
         <script src="{{asset('assets/js/template.js')}}"></script>
         <script src="{{asset('assets/vendors/chart.js/Chart.min.js')}}"></script>
         <script src="{{asset('assets/js/chart.js')}}"></script>
+        @livewireStyles
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -45,7 +46,12 @@
             <main>
                 {{ $slot }}
             </main>
+            @livewireScripts
 
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="//unpkg.com/alpinejs" defer></script>
+
+            <x-livewire-alert::scripts />
             <footer class="footer">
                 <div class="footer-wrap">
                   <div class="d-sm-flex justify-content-center justify-content-sm-between">

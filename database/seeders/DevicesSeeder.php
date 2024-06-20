@@ -15,7 +15,7 @@ class DevicesSeeder extends Seeder
     {
         DB::table('devices')->insert([
             [
-                'id' => 2,
+                'id' => 1,
                 'chip_id' => 'a4f67acd',
                 'create_at' => '2024-06-03',
                 'type_device' => 'ESP32',
@@ -28,11 +28,11 @@ class DevicesSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'id' => 3,
+                'id' => 2,
                 'chip_id' => '564grtacd',
                 'create_at' => '2024-06-03',
                 'type_device' => 'ESP32',
-                'user_id' => 1,
+                'user_id' => 2,
                 'service' => 0,
                 'temperature' => 53.33,
                 'uptime' => 333,
@@ -41,11 +41,11 @@ class DevicesSeeder extends Seeder
                 'status' => 1,
             ],
             [
-                'id' => 1,
+                'id' => 3,
                 'chip_id' => '9dfc8ad4',
                 'create_at' => '2024-06-03',
                 'type_device' => 'ESP32',
-                'user_id' => 2,
+                'user_id' => 3,
                 'service' => 0,
                 'temperature' => 53.33,
                 'uptime' => 333,

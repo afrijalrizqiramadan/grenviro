@@ -16,7 +16,7 @@ class CustomersSeeder extends Seeder
         DB::table('customers')->insert([
             [
                 'id' => 1,
-                'user_id' => 2,
+                'user_id' => 1,
                 'name' => 'rizqi',
                 'address' => 'Jalan Mertojoyo Malang',
                 'telp' => 812345678,
@@ -38,7 +38,7 @@ class CustomersSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'user_id' => 4,
+                'user_id' => 2,
                 'name' => 'Wahyu',
                 'address' => 'Jalan Mertojoyo Malang',
                 'telp' => 812345678,
@@ -60,7 +60,7 @@ class CustomersSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'user_id' => 5,
+                'user_id' => 3,
                 'name' => 'Siska',
                 'address' => 'Surabaya',
                 'telp' => 812345678,

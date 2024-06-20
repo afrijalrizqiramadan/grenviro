@@ -1,17 +1,20 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Smart Monitoring CNG",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "jantinnerezo/livewire-alert": "^3.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
+        "laravolt/indonesia": "^0.35.0",
         "livewire/livewire": "^3.5",
         "nesbot/carbon": "^3.5",
+        "power-components/livewire-powergrid": "^5.8",
         "rappasoft/laravel-livewire-tables": "^3.2",
         "spatie/laravel-permission": "^6.7",
         "yajra/laravel-datatables-oracle": "^11.1"

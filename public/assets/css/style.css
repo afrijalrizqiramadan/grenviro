@@ -22040,7 +22040,6 @@ code {
 select.form-control, select.typeahead,
 select.tt-query,
 select.tt-hint {
-  padding: .4375rem .75rem;
   border: 0;
   outline: 1px solid #f1f6f8;
   color: #c9c8c8;

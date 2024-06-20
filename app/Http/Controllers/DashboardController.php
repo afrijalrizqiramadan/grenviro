@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
 use App\Models\DeliveryStatus;
 use App\Models\DataSensor;
+use Laravolt\Indonesia\Models\District;
 
 class DashboardController extends Controller
 {
@@ -16,14 +17,19 @@ class DashboardController extends Controller
         // $user = $request->user();
         $user = Auth::user();
         if($user->hasRole('administrator')) {
-        //     $user = Auth::user(); // Mendapatkan pengguna yang sedang login
-        // $customer = $user->customer; // Mendapatkan data customer yang terkait dengan pengguna
+            $user = Auth::user(); // Mendapatkan pengguna yang sedang login
+            $customerCount = Customer::count(); // Menghitung jumlah data customer
+            $averagePressure = DataSensor::avg('pressure');
 
-        // $nama = $customer->name;
-        // $email = $customer->email;
+            $minpressuresensor = DataSensor::join('devices', 'data_sensors.device_id', '=', 'devices.id')
+            ->join('customers', 'devices.id', '=', 'customers.device_id')
+            ->join('indonesia_districts', 'customers.district', '=', 'indonesia_districts.id') // Join dengan tabel districts
+            ->select('data_sensors.*', 'customers.*', 'indonesia_districts.name as district_name')
+            ->get();
 
-           return view('dashboard-administrator');
-        }
+
+              return view('dashboard-administrator', compact('customerCount','averagePressure', 'minpressuresensor'));
+     }
         elseif($user->hasRole('customer')) {
             $user = Auth::user(); // Mendapatkan pengguna yang sedang login
             $customer = $user->customer; // Mendapatkan data customer yang terkait dengan pengguna
@@ -40,7 +46,7 @@ class DashboardController extends Controller
             $registration_date_device = $customer->registration_date;
             $statuses = DeliveryStatus::where('customer_id', $customer_id)->orderBy('delivery_date', 'desc')
             ->take(5)->get();
-            $latestPressure = DataSensor::where('device_id',  $id_device)
+           $latestPressure = DataSensor::where('device_id',  $id_device)
             ->orderBy('timestamp', 'desc')
             ->value('pressure');
             $sensorData = DataSensor::where('device_id', $id_device)->orderBy('timestamp')->get();
