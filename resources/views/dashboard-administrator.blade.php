@@ -7,7 +7,7 @@
                             <div class="col-sm-6 mb-4 mb-xl-0">
                                 <div class="d-lg-flex align-items-center">
                                     <div>
-                                        <h3 class="text-dark font-weight-bold mb-2">Login Admin</h3>
+                                        <h3 class="text-dark font-weight-bold mb-2">Admin</h3>
                                         <h6 class="font-weight-normal mb-2">Last login was 23 hours ago. View details</h6>
                                     </div>
                                     <!--<div class="ms-lg-5 d-lg-flex d-none">-->
