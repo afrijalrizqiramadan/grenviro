@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SensorDataController;
 use App\Http\Controllers\DeviceController;
-use App\Http\Controllers\ActuatorController;
+use App\Http\Controllers\AktuatorController;
 
 
 /*
@@ -18,9 +18,9 @@ use App\Http\Controllers\ActuatorController;
 |
 // */
 Route::post('/send-data', [SensorDataController::class, 'store']);
-Route::get('/get-buzzer', [ActuatorController::class, 'getBuzzer']);
-
+Route::get('/get-buzzer', [AktuatorController::class, 'getBuzzer']);
 Route::post('/update-device', [DeviceController::class, 'update']);
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
