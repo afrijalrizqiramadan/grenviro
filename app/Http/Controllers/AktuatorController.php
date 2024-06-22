@@ -14,10 +14,10 @@ class AktuatorController extends Controller
         $id = $request->input('device_id');
         $api_key = $request->input('api_key');
 
-        if ($api_key === "2") {
+        if ($api_key === env('API_KEY')) {
             $buzzer = DB::table('data_aktuators')
             ->where('id', $id)
-            ->pluck('heater')
+            ->pluck('buzzer')
             ->first();
             Log::info('Buzzer: ' . $buzzer);
 
