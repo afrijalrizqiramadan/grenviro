@@ -9,7 +9,7 @@ class ActuatorController extends Controller
 {
     public function getBuzzer(Request $request)
     {
-        $id = $request->input('device');
+        $id = $request->input('device_id');
         $api_key = $request->input('api_key');
 
         if ($api_key === env('API_KEY')) {
