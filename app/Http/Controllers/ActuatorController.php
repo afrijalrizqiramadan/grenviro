@@ -9,13 +9,13 @@ class ActuatorController extends Controller
 {
     public function getBuzzer(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->input('device');
         $api_key = $request->input('api_key');
 
         if ($api_key === env('API_KEY')) {
             $result = DB::table('data_aktuator')
                 ->select('buzzer')
-                ->where('id_device', $id)
+                ->where('device_id', $id)
                 ->first();
 
             if ($result) {
