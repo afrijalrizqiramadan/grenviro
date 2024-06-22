@@ -20,14 +20,8 @@ class AktuatorController extends Controller
             ->pluck('buzzer')
             ->first();
             Log::info('Buzzer: ' . $buzzer);
-
-            if ($buzzer) {
                 return response($buzzer, 200)
                     ->header('Content-Type', 'text/plain');
-            } else {
-                return response('0', 404)
-                    ->header('Content-Type', 'text/plain');
-            }
         } else {
             return response('0', 403)
                 ->header('Content-Type', 'text/plain');
