@@ -226,10 +226,30 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="col-lg-4 d-flex grid-margin stretch-card">
+
+                            <div class="col-lg-4 d-flex grid-margin stretch-card">
+                                <row>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h2 id="pressure-data" class="h2 mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
+                                        <h2 id="pressure-data" class="h2 mb-2 font-weight-bold">{{$latestPressure}}</h2>
+                                        <div class="progress mb-3">
+                                            <div class="progress-bar
+                                            @if($latestPressure < 20)
+                                                bg-danger
+                                            @elseif($latestPressure >= 20 && $latestPressure < 40)
+                                                bg-warning
+                                            @else
+                                                bg-success
+                                            @endif
+                                        " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
+                                        <p class="pb-0 mb-0">Sensor Suhu</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 id="temperature-data" class="h2 mb-2 font-weight-bold">C</h2>
                                         <div class="progress mb-3">
                                             <div class="progress-bar
                                             @if($latestPressure < 20)
@@ -243,6 +263,8 @@
                                         <p class="pb-0 mb-0">Tekanan Gas</p>
                                     </div>
                                 </div>
+                            </row>
+
                             </div>
                              <div class="col-md-8 grid-margin stretch-card">
           <div class="card">
@@ -352,12 +374,25 @@
                                     }
                                 });
                             }
+                            function fetchTemperatureData() {
+                                $.ajax({
+                                    url: '/api/sensor-temperature/' + deviceId,
+                                    method: 'GET',
+                                    success: function(response) {
+                                        $('#temperature-data').text(response.temperature);
+                                    },
+                                    error: function() {
+                                        $('#temperature-data').text('Error retrieving data.');
+                                    }
+                                });
+                            }
 
-                            // Panggil fetchPressureData setiap 5 detik
                             setInterval(fetchPressureData, 2000);
-
-                            // Panggil fetchPressureData sekali saat halaman dimuat
+                            setInterval(fetchTemperatureData, 2000);
                             fetchPressureData();
+                            fetchTemperatureData();
                         });
+
+
                     </script>
                 </x-app-layout>

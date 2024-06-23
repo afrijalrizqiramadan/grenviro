@@ -90,4 +90,10 @@ class DashboardController extends Controller
         return response()->json($data);
     }
 
+    public function getTemperatureData($id_device)
+    {
+        $data = DataSensor::where('device_id', 1)->latest()->first(['temperature']);
+        return response()->json($data);
+    }
+
 }
