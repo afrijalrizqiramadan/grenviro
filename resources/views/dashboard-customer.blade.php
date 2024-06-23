@@ -329,8 +329,8 @@
         });
                     </script>
                      <script>
-                        $(document).ready(function() {
-                            var deviceId = {{ $id_device }}; // Pastikan $id_device ini dikirim dari controller ke view
+ document.addEventListener('DOMContentLoaded', function () {
+    var deviceId = {{ $id_device }}; // Pastikan $id_device ini dikirim dari controller ke view
 
                             function fetchPressureData() {
                                 $.ajax({
