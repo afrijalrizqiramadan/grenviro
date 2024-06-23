@@ -330,7 +330,7 @@
             });
 
             // Fetch data secara berkala
-            setInterval(fetchSensorData, 5000); // 5000 ms = 5 detik
+            setInterval(fetchSensorData, 2000); // 5000 ms = 5 detik
 
             // Menampilkan data awal
             fetchSensorData();
@@ -354,7 +354,7 @@
                             }
 
                             // Panggil fetchPressureData setiap 5 detik
-                            setInterval(fetchPressureData, 5000);
+                            setInterval(fetchPressureData, 2000);
 
                             // Panggil fetchPressureData sekali saat halaman dimuat
                             fetchPressureData();
