@@ -342,7 +342,7 @@
 
                             function fetchPressureData() {
                                 $.ajax({
-                                    url: '/api/sensor-data/' + deviceId,
+                                    url: '/api/sensor-pressure/' + deviceId,
                                     method: 'GET',
                                     success: function(response) {
                                         $('#pressure-data').text('Pressure: ' + response.pressure);
