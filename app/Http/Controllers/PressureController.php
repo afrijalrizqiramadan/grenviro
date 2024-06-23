@@ -15,11 +15,11 @@ class PressureController extends Controller
         $user = $request->user();
 
         if($user->hasRole('administrator')) {
-            $latestPressures = DataSensor::select('customers.name','customers.location', 'data_sensor.device_id', 'data_sensor.pressure')
-            ->leftJoin('customers', 'data_sensor.device_id', '=', 'customers.device_id')
-            ->whereIn('data_sensor.id', function ($query) {
+            $latestPressures = DataSensor::select('customers.id','customers.name','customers.location', 'data_sensors.device_id', 'data_sensors.pressure')
+            ->leftJoin('customers', 'data_sensors.device_id', '=', 'customers.device_id')
+            ->whereIn('data_sensors.id', function ($query) {
                 $query->selectRaw('MAX(id)')
-                      ->from('data_sensor')
+                      ->from('data_sensors')
                       ->groupBy('device_id');
             })
             ->get();

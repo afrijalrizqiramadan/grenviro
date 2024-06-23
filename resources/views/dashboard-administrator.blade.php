@@ -8,7 +8,6 @@
                                 <div class="d-lg-flex align-items-center">
                                     <div>
                                         <h3 class="text-dark font-weight-bold mb-2">Selamat Datang Admin</h3>
-                                        <h6 class="font-weight-normal mb-2">Last login was 23 hours ago. View details</h6>
                                     </div>
                                     <!--<div class="ms-lg-5 d-lg-flex d-none">-->
                                     <!--		<button type="button" class="btn bg-white btn-icon">-->
@@ -71,15 +70,15 @@
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h2 class="text-info font-weight-bold">244</h2>
+                                            <h2 class="h2 text-info font-weight-bold">{{$countDeliveries}}</h2>
                                             <i class="mdi mdi-file-document-outline mdi-18px text-dark"></i>
                                         </div>
                                     </div>
                                     <canvas id="invoices"></canvas>
-                                    <div class="line-chart-row-title">NEW INVOICES</div>
+                                    <div class="line-chart-row-title">Total Pengiriman</div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 grid-margin stretch-card">
+                            {{-- <div class="col-lg-2 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="d-flex align-items-center justify-content-between">
@@ -114,7 +113,7 @@
                                     <canvas id="transactions"></canvas>
                                     <div class="line-chart-row-title">TRANSACTIONS</div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-8 grid-margin stretch-card">
@@ -181,19 +180,7 @@
                                           </table>                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 mb-3 mb-lg-0">
-                                <div class="card congratulation-bg text-center">
-                                    <div class="card-body pb-0">
-                                        <img src="images/dashboard/face29.png" alt="">
-                                        <h2 class="mt-3 text-white mb-3 font-weight-bold">Congratulations
-                                            <//?php echo $nama ?>
-                                        </h2>
-                                        <p>You have done 57.6% more sales today.
-                                            Check your new badge in your profile.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-sm-8 flex-column d-flex stretch-card">

@@ -9,7 +9,7 @@ class HistorySensor extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'device',
+        'device_id',
         'timestamp',
         'pressure',
         'temperature',

@@ -7,8 +7,12 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
 use App\Models\DeliveryStatus;
+use App\Models\HistorySensor;
 use App\Models\DataSensor;
 use Laravolt\Indonesia\Models\District;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class DashboardController extends Controller
 {
@@ -27,8 +31,12 @@ class DashboardController extends Controller
             ->select('data_sensors.*', 'customers.*', 'indonesia_districts.name as district_name')
             ->get();
 
+            $countDeliveries = DeliveryStatus::where('status', 'Selesai')
+            ->whereYear('delivery_date', now()->year)
+            ->whereMonth('delivery_date', now()->month)
+            ->count();
 
-              return view('dashboard-administrator', compact('customerCount','averagePressure', 'minpressuresensor'));
+              return view('dashboard-administrator', compact('countDeliveries','customerCount','averagePressure', 'minpressuresensor'));
      }
         elseif($user->hasRole('customer')) {
             $user = Auth::user(); // Mendapatkan pengguna yang sedang login
@@ -43,19 +51,34 @@ class DashboardController extends Controller
             $email = $customer->email;
             $id_device = $device->id;
             $status_device = $device->status;
+
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+        $apiKey = '50833fc817cd790ad28ff60cf080111e';  // Ganti dengan API Key Anda
+        $city = 'Malang';  // Ganti dengan lokasi yang diinginkan
+        $units = 'metric';  // Gunakan 'imperial' untuk Fahrenheit
+        $client = new Client();
+        $response = $client->get("https://api.openweathermap.org/data/2.5/weather?q={$city}&units={$units}&appid={$apiKey}");
+
+        $weatherData = json_decode($response->getBody(), true);
+
             $registration_date_device = $customer->registration_date;
             $statuses = DeliveryStatus::where('customer_id', $customer_id)->orderBy('delivery_date', 'desc')
             ->take(5)->get();
            $latestPressure = DataSensor::where('device_id',  $id_device)
             ->orderBy('timestamp', 'desc')
             ->value('pressure');
-            $sensorData = DataSensor::where('device_id', $id_device)->orderBy('timestamp')->get();
+            $sensorData = HistorySensor::where('device_id', $id_device)
+            ->whereMonth('timestamp', $currentMonth)
+            ->whereYear('timestamp', $currentYear)
+            ->orderBy('timestamp')
+            ->get();
 
             // Mengumpulkan data nilai_sensor dan tanggal untuk chart
             $pressure = $sensorData->pluck('pressure');
             $timestamp = $sensorData->pluck('timestamp');
 
-        return view('dashboard-customer', compact('maps','latestPressure','images','location','pressure', 'timestamp','nama', 'statuses','email','status_device','capacity','registration_date_device'));
+        return view('dashboard-customer', compact('weatherData','maps','id_device','latestPressure','images','location','pressure', 'timestamp','nama', 'statuses','email','status_device','capacity','registration_date_device'));
         }
         elseif($user->hasRole('technician')) {
             return view('dashboard-technician');

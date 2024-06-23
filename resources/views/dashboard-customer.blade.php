@@ -18,7 +18,7 @@
                             <!--</div>-->
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <div class="d-flex align-items-center justify-content-md-end">
                             <div class="pe-1 mb-3 mb-xl-0">
                                     <button type="button" class="btn btn-outline-inverse-info btn-icon-text">
@@ -39,7 +39,7 @@
                             <!--		</button>-->
                             <!--</div>-->
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                                            <br>
 
@@ -83,8 +83,8 @@
 <br>
                                                 <h2 id="realTime" class="h2 text-dark">00:00:00</h2>
                                                 <div class="d-lg-flex align-items-baseline mb-3">
-                                                    <h1 class="text-dark font-weight-bold">23<sup class="font-weight-light"><small>o</small><small class="font-weight-medium">c</small></sup></h1>
-                                                    <p class="text-muted ms-3">Partly cloudy</p>
+                                                    <h1 class="text-dark font-weight-bold">{{ $weatherData['main']['temp'] }}<sup class="font-weight-light"><small>o</small><small class="font-weight-medium">c</small></sup></h1>
+                                                    <p class="text-muted ms-3">{{ $weatherData['weather'][0]['main'] }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -97,13 +97,13 @@
                                         </div>
                                         <br>
                                         <div class="row">
-                                            <h4 class="card-title">Riwayat Pengiriman</h4>
+                                            <h4 class="card-title">Riwayat Pengiriman Bulan Ini</h4>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Total</th>
+                      <th>Jumlah Pengiriman</th>
                       <th>Tanggal</th>
                       <th>Status</th>
                     </tr>
@@ -127,11 +127,29 @@
                             ">{{ $status->status }}</label></td>
                     </tr>
                     @endforeach
-
-
                   </tbody>
                 </table>
               </div>
+            </br>
+        <div class="col-sm-6">
+        </br>
+    </br>
+
+                <div class="d-flex align-items-center justify-content-md-end">
+                    <div class="pe-1 mb-3 mb-xl-0">
+                            <button onclick="window.location.href='{{ route('delivery') }}'" type="button" class="btn btn-info">
+                                Detail
+                            </button>
+                    </div>
+
+                    <!--<div class="pe-1 mb-3 mb-xl-0">-->
+                    <!--		<button type="button" class="btn btn-outline-inverse-info btn-icon-text">-->
+                    <!--			Print-->
+                    <!--			<i class="mdi mdi-printer btn-icon-append"></i>                          -->
+                    <!--		</button>-->
+                    <!--</div>-->
+                </div>
+        </div>
                                             <!--<div class="col-sm-12 mt-4 mt-lg-0">-->
                                             <!--	<div class="bg-primary text-white px-4 py-4 card">-->
                                             <!--		<div class="row">-->
@@ -175,9 +193,8 @@
                     </div>
                     <div class="col-sm-8 flex-column d-flex stretch-card">
                         <div class="row">
-
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
-                                <div class="card sale-diffrence-border">
+                                <div class="card sale-visit-statistics-border">
                                     <div class="card-body">
                                         <h2 class="text-dark mb-2 font-weight-bold">{{$capacity}}</h2></h2>
                                         <h4 class="card-title mb-2">Kapasitas Tabung</h4>
@@ -186,7 +203,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
-                                    <div class="card sale-diffrence-border">
+                                <div class="card sale-visit-statistics-border">
                                     <div class="card-body">
                                         <h2 class="text-dark mb-2 font-weight-bold">{{$status_device}}</h2>
                                         <h4 class="card-title mb-2">Status Device</h4>
@@ -195,7 +212,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
-                                <div class="card sale-diffrence-border">
+                                <div class="card sale-visit-statistics-border">
                                     <div class="card-body">
                                         <h2 class="text-dark mb-2 font-weight-bold">{{$registration_date_device}}</h2>
                                         <h4 class="card-title mb-2">Tanggal Bergabung</h4>
@@ -204,9 +221,9 @@
                                 </div>
                             </div>
                                 <div class="col-lg-4 d-flex grid-margin stretch-card">
-                                <div class="card bg-primary">
-                                    <div class="card-body text-white">
-                                        <h2 class="h2 text-white mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="h2 mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
                                         <div class="progress mb-3">
                                             <div class="progress-bar
                                             @if($latestPressure < 20)
@@ -225,6 +242,15 @@
           <div class="card">
             <div class="card-body">
                     <h4 class="card-title">Pressure Monitor</h4>
+                    <label for="filter">Filter Data:</label>
+                    <select id="filter">
+                        <option value="all">Semua Data</option>
+                        <option value="day">Per Hari</option>
+                        <option value="7days">7 Hari Terakhir</option>
+                        <option value="30days">30 Hari Terakhir</option>
+                        <option value="month">Bulan Ini</option>
+                        <option value="year">Tahun Ini</option>
+                    </select>
                     <canvas id="sensorChart" width="800" height="400"></canvas>
 
             </div>
@@ -233,34 +259,73 @@
 
                     </div>
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var ctx = document.getElementById('sensorChart').getContext('2d');
-                            var sensorChart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: {!! json_encode($timestamp) !!},
-                                    datasets: [{
-                                        label: 'Nilai Pressure',
-                                        data: {!! json_encode($pressure) !!},
-                                        fill: false,
-                                        borderColor: 'rgb(75, 192, 192)',
-                                        tension: 0.1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        x: {
-                                            type: 'time',
-                                            time: {
-                                                unit: 'day'
-                                            }
-                                        },
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                        });
+ document.addEventListener('DOMContentLoaded', function () {
+            var id_device = @json($id_device);
+            var ctx = document.getElementById('sensorChart').getContext('2d');
+
+            var sensorChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Sensor Data',
+                        data: [],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            function updateChart(data) {
+                var filteredLabels = data.map(function(data) {
+                    return data.timestamp;
+                });
+
+                var filteredValues = data.map(function(data) {
+                    return data.pressure; // Asumsikan kolom nilai sensor adalah 'value'
+                });
+
+                sensorChart.data.labels = filteredLabels;
+                sensorChart.data.datasets[0].data = filteredValues;
+                sensorChart.update();
+            }
+
+            function fetchSensorData() {
+                var period = document.getElementById('filter').value;
+                var url = `/api/sensor-data?id_device=1&period=${period}`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        updateChart(data);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+            document.getElementById('filter').addEventListener('change', function() {
+                fetchSensorData();
+            });
+
+            // Fetch data secara berkala
+            setInterval(fetchSensorData, 5000); // 5000 ms = 5 detik
+
+            // Menampilkan data awal
+            fetchSensorData();
+        });
+
                     </script>
                 </x-app-layout>

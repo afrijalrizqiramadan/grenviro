@@ -12,7 +12,7 @@ class DeliveryStatus extends Model
      protected $table = 'delivery_status';
 
      // Tentukan kolom yang bisa diisi
-     protected $fillable = ['total', 'delivery_date','status']; // sesuaikan dengan kolom yang ada
+     protected $fillable = ['customer_id','total', 'delivery_date','status']; // sesuaikan dengan kolom yang ada
      public function customer()
      {
         return $this->belongsTo(Customer::class, 'customer_id');
