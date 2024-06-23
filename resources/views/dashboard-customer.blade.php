@@ -242,7 +242,7 @@
                                                 bg-success
                                             @endif
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
-                                        <p class="pb-0 mb-0">Sensor Suhu</p>
+                                        <p class="pb-0 mb-0">Tekanan Gas</p>
                                     </div>
                                 </div>
                                 <br>
@@ -260,7 +260,7 @@
                                                 bg-success
                                             @endif
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
-                                        <p class="pb-0 mb-0">Tekanan Gas</p>
+                                        <p class="pb-0 mb-0">Sensor Suhu</p>
                                     </div>
                                 </div>
                             </row>
