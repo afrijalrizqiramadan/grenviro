@@ -345,7 +345,7 @@
                                     url: '/api/sensor-pressure/' + deviceId,
                                     method: 'GET',
                                     success: function(response) {
-                                        $('#pressure-data').text('Pressure: ' + response.pressure);
+                                        $('#pressure-data').text(response.pressure);
                                     },
                                     error: function() {
                                         $('#pressure-data').text('Error retrieving data.');
