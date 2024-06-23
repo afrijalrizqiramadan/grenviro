@@ -223,7 +223,7 @@
                                 <div class="col-lg-4 d-flex grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h2 class="h2 mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
+                                        <h2 id="pressure-data" class="h2 mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
                                         <div class="progress mb-3">
                                             <div class="progress-bar
                                             @if($latestPressure < 20)
@@ -326,6 +326,27 @@
             // Menampilkan data awal
             fetchSensorData();
         });
+        $(document).ready(function() {
+            var deviceId = {{ $id_device }}; // Pastikan $id_device ini dikirim dari controller ke view
 
+            function fetchPressureData() {
+                $.ajax({
+                    url: '/sensor-data/' + deviceId,
+                    method: 'GET',
+                    success: function(response) {
+                        $('#pressure-data').text('Pressure: ' + response.pressure);
+                    },
+                    error: function() {
+                        $('#pressure-data').text('Error retrieving data.');
+                    }
+                });
+            }
+
+            // Panggil fetchPressureData setiap 5 detik
+            setInterval(fetchPressureData, 5000);
+
+            // Panggil fetchPressureData sekali saat halaman dimuat
+            fetchPressureData();
+        });
                     </script>
                 </x-app-layout>

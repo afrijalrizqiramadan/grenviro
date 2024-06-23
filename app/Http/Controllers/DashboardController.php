@@ -65,9 +65,7 @@ class DashboardController extends Controller
             $registration_date_device = $customer->registration_date;
             $statuses = DeliveryStatus::where('customer_id', $customer_id)->orderBy('delivery_date', 'desc')
             ->take(5)->get();
-           $latestPressure = DataSensor::where('device_id',  $id_device)
-            ->orderBy('timestamp', 'desc')
-            ->value('pressure');
+           $latestPressure = DataSensor::where('device_id',  $id_device)->value('pressure');
             $sensorData = HistorySensor::where('device_id', $id_device)
             ->whereMonth('timestamp', $currentMonth)
             ->whereYear('timestamp', $currentYear)
@@ -84,4 +82,10 @@ class DashboardController extends Controller
             return view('dashboard-technician');
          }
     }
+    public function getPressureData($id_device)
+    {
+        $data = DataSensor::where('device_id', $id_device)->value('pressure');
+        return response()->json($data);
+    }
+
 }
