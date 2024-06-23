@@ -258,6 +258,7 @@
                     </div>
 
                     </div>
+
                     <script>
  document.addEventListener('DOMContentLoaded', function () {
             var id_device = @json($id_device);
@@ -326,27 +327,29 @@
             // Menampilkan data awal
             fetchSensorData();
         });
-        $(document).ready(function() {
-            var deviceId = {{ $id_device }}; // Pastikan $id_device ini dikirim dari controller ke view
+                    </script>
+                     <script>
+                        $(document).ready(function() {
+                            var deviceId = {{ $id_device }}; // Pastikan $id_device ini dikirim dari controller ke view
 
-            function fetchPressureData() {
-                $.ajax({
-                    url: '/api/sensor-data/' + deviceId,
-                    method: 'GET',
-                    success: function(response) {
-                        $('#pressure-data').text('Pressure: ' + response.pressure);
-                    },
-                    error: function() {
-                        $('#pressure-data').text('Error retrieving data.');
-                    }
-                });
-            }
+                            function fetchPressureData() {
+                                $.ajax({
+                                    url: '/sensor-data/' + deviceId,
+                                    method: 'GET',
+                                    success: function(response) {
+                                        $('#pressure-data').text('Pressure: ' + response.pressure);
+                                    },
+                                    error: function() {
+                                        $('#pressure-data').text('Error retrieving data.');
+                                    }
+                                });
+                            }
 
-            // Panggil fetchPressureData setiap 5 detik
-            setInterval(fetchPressureData, 5000);
+                            // Panggil fetchPressureData setiap 5 detik
+                            setInterval(fetchPressureData, 5000);
 
-            // Panggil fetchPressureData sekali saat halaman dimuat
-            fetchPressureData();
-        });
+                            // Panggil fetchPressureData sekali saat halaman dimuat
+                            fetchPressureData();
+                        });
                     </script>
                 </x-app-layout>

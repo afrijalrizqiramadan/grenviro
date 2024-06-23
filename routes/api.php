@@ -25,7 +25,7 @@ Route::post('/update-device', [DeviceController::class, 'update']);
 Route::get('/sensor-data', [SensorDataController::class, 'getFilteredSensorData']);
 Route::post('/insert-delivery', [DeliveryController::class, 'store'])->name('insert.route');
 Route::post('/update-status/{id}', [DeliveryController::class, 'updateStatus']);
-Route::get('/sensor-data/{id_device}', [DashboardController::class, 'getPressureData']);
+Route::get('/sensor-pressure/{id_device}', [DashboardController::class, 'getPressureData']);
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
