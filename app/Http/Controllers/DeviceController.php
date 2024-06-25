@@ -41,7 +41,7 @@ class DeviceController extends Controller
             $device->temperature = $data['temperature'];
             $device->save();
 
-            return response()->json(['message' => 'Device data updated successfully', 'data' => $device], 200);
+            return response('Success', 200);
         } else {
             return response()->json(['error' => 'Device not found'], 404);
         }

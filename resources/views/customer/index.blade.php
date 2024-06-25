@@ -45,6 +45,7 @@
                         <p class="card-description">
                         </p>
                         <div class="table-responsive">
+                            <livewire:customer/>
                         </div>
                     <div>
                 </div>

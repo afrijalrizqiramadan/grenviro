@@ -46,8 +46,8 @@ class SensorDataController extends Controller
                 'temperature' => $data['temperature'],
             ]);
 
-        return response()->json(['message' => 'Data received and processed successfully', 'data' => $data], 200);
-    }
+            return response('Success', 200);
+        }
     public function showChart()
     {
         $id_device = Auth::user()->customer->device->id;
