@@ -244,7 +244,7 @@
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
                                         <h4 class="card-title mb-2">Tekanan Gas</h4>
 
-                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:m')}}</small>                                    </div>
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:m:s')}}</small>                                    </div>
                                 </div>
                                 <br>
                                 <br>
@@ -253,7 +253,7 @@
                                         <h2 id="temperature-data" class="h2 mb-2 font-weight-bold">0 C</h2>
 
                                         <h4 class="card-title mb-2">Suhu</h4>
-                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:s')}}</small>                                    </div>
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:m:s')}}</small>                                    </div>
                                 </div>
                             </row>
 
