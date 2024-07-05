@@ -227,11 +227,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 d-flex grid-margin stretch-card">
+                            <div class="col-lg">
                                 <row>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h2 id="pressure-data" class="h2 mb-2 font-weight-bold">{{$latestPressure}}</h2>
+                                    <div class="card sale-visit-statistics-border">
+                                        <div class="card-body">
+                                        <h2 id="pressure-data" class="h2 mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
                                         <div class="progress mb-3">
                                             <div class="progress-bar
                                             @if($latestPressure < 20)
@@ -242,26 +242,18 @@
                                                 bg-success
                                             @endif
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
-                                        <p class="pb-0 mb-0">Tekanan Gas</p>
-                                    </div>
+                                        <h4 class="card-title mb-2">Tekanan Gas</h4>
+
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:s')}}</small>                                    </div>
                                 </div>
                                 <br>
                                 <br>
-                                <div class="card">
+                                <div class="card sale-visit-statistics-border">
                                     <div class="card-body">
-                                        <h2 id="temperature-data" class="h2 mb-2 font-weight-bold">C</h2>
-                                        <div class="progress mb-3">
-                                            <div class="progress-bar
-                                            @if($latestPressure < 20)
-                                                bg-danger
-                                            @elseif($latestPressure >= 20 && $latestPressure < 40)
-                                                bg-warning
-                                            @else
-                                                bg-success
-                                            @endif
-                                        " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
-                                        <p class="pb-0 mb-0">Sensor Suhu</p>
-                                    </div>
+                                        <h2 id="temperature-data" class="h2 mb-2 font-weight-bold">0 C</h2>
+
+                                        <h4 class="card-title mb-2">Suhu</h4>
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:s')}}</small>                                    </div>
                                 </div>
                             </row>
 
@@ -367,7 +359,7 @@
                                     url: '/api/sensor-pressure/' + deviceId,
                                     method: 'GET',
                                     success: function(response) {
-                                        $('#pressure-data').text(response.pressure);
+                                        $('#pressure-data').text(response.pressure+ ' psi');
                                     },
                                     error: function() {
                                         $('#pressure-data').text('Error retrieving data.');
@@ -379,7 +371,7 @@
                                     url: '/api/sensor-temperature/' + deviceId,
                                     method: 'GET',
                                     success: function(response) {
-                                        $('#temperature-data').text(response.temperature);
+                                        $('#temperature-data').text(response.temperature+ ' C');
                                     },
                                     error: function() {
                                         $('#temperature-data').text('Error retrieving data.');

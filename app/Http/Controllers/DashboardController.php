@@ -68,6 +68,9 @@ class DashboardController extends Controller
            $latestPressure = DataSensor::where('device_id',  $id_device)
             ->orderBy('timestamp', 'desc')
             ->value('pressure');
+            $latestTime = DataSensor::where('device_id',  $id_device)
+            ->orderBy('timestamp', 'desc')
+            ->value('timestamp');
             $sensorData = HistorySensor::where('device_id', $id_device)
             ->whereMonth('timestamp', $currentMonth)
             ->whereYear('timestamp', $currentYear)
@@ -78,10 +81,27 @@ class DashboardController extends Controller
             $pressure = $sensorData->pluck('pressure');
             $timestamp = $sensorData->pluck('timestamp');
 
-        return view('dashboard-customer', compact('weatherData','maps','id_device','latestPressure','images','location','pressure', 'timestamp','nama', 'statuses','email','status_device','capacity','registration_date_device'));
+        return view('dashboard-customer', compact('latestTime','weatherData','maps','id_device','latestPressure','images','location','pressure', 'timestamp','nama', 'statuses','email','status_device','capacity','registration_date_device'));
         }
         elseif($user->hasRole('technician')) {
-            return view('dashboard-technician');
+
+            $deviceData = Device::get();
+            $user = Auth::user(); // Mendapatkan pengguna yang sedang login
+            $customerCount = Customer::count(); // Menghitung jumlah data customer
+            $averagePressure = DataSensor::avg('pressure');
+
+            $minpressuresensor = DataSensor::join('devices', 'data_sensors.device_id', '=', 'devices.id')
+            ->join('customers', 'devices.id', '=', 'customers.device_id')
+            ->join('indonesia_districts', 'customers.district', '=', 'indonesia_districts.id') // Join dengan tabel districts
+            ->select('data_sensors.*', 'customers.*', 'indonesia_districts.name as district_name')
+            ->get();
+
+            $countDeliveries = DeliveryStatus::where('status', 'Selesai')
+            ->whereYear('delivery_date', now()->year)
+            ->whereMonth('delivery_date', now()->month)
+            ->count();
+
+              return view('dashboard-technician', compact('deviceData','countDeliveries','customerCount','averagePressure', 'minpressuresensor'));
          }
     }
     public function getPressureData($id_device)
