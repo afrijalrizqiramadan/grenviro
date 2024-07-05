@@ -96,7 +96,7 @@
                                     <div class="col-lg-12 grid-margin stretch-card">
                                         <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="table ">
                                               <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -170,7 +170,7 @@
                                     <div class="col-lg-12 grid-margin stretch-card">
                                         <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="table">
                                               <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -245,7 +245,7 @@
                                     <div class="col-lg-12 grid-margin stretch-card">
                                         <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="table">
                                               <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -320,7 +320,7 @@
                                     <div class="col-lg-12 grid-margin stretch-card">
                                         <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="table">
                                               <thead>
                                                 <tr>
                                                     <th>No</th>

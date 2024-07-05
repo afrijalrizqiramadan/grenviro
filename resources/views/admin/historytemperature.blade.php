@@ -11,11 +11,11 @@
                   <p class="card-description">
                   </p>
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            Nama 
+                            Nama
                           </th>
                           <th>
                             Lokasi
@@ -48,7 +48,7 @@
 
                              <td><label class="badge badge-warning">In progress</label></td>
                         </tr>
-                        
+
                       </tbody>
                     </table>
                   </div>
