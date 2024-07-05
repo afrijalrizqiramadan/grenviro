@@ -244,7 +244,7 @@
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
                                         <h4 class="card-title mb-2">Tekanan Gas</h4>
 
-                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:s')}}</small>                                    </div>
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:m')}}</small>                                    </div>
                                 </div>
                                 <br>
                                 <br>
