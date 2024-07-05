@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Customer;
 use App\Models\DeliveryStatus;
 use App\Models\HistorySensor;
+use App\Models\Device;
 use App\Models\DataSensor;
 use Laravolt\Indonesia\Models\District;
 use Illuminate\Support\Facades\Log;
