@@ -244,6 +244,8 @@
                                 <div class="tab-pane fade" id="selesai" role="tabpanel" aria-labelledby="selesai-tab">
                                     <div class="col-lg-12 grid-margin stretch-card">
                                         <div class="card-body">
+                                            <div class="row">
+
                                         <div class="table-responsive">
                                             <table class="table">
                                               <thead>
@@ -312,8 +314,9 @@
 
                                               </tbody>
                                             </table>
-                                          </div>
                                         </div>
+                                    </div>
+                                </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="batal" role="tabpanel" aria-labelledby="batal-tab">
