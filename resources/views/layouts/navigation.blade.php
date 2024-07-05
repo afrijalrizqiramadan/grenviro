@@ -64,8 +64,6 @@
 
                     @endif
 
-
-
                 </div>
             </div>
 
@@ -123,9 +121,57 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if(Auth::user()->hasRole('customer'))
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('delivery')">
+                {{ __('Pengiriman') }}
+            </x-responsive-nav-link>
+
+            @elseif(Auth::user()->hasRole('administrator'))
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pressure')">
+                {{ __('Pressure') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('delivery')">
+                {{ __('Pengiriman') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('map.index')">
+                {{ __('Peta') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('customer.index')">
+                {{ __('Customer') }}
+            </x-responsive-nav-link>
+
+            @elseif(Auth::user()->hasRole('technician'))
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pressure')">
+                {{ __('Pressure') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('temperature')">
+                {{ __('Temperature') }}
+            </x-responsive-nav-link>
+
+            @elseif(Auth::user()->hasRole('technician'))
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pressure')">
+                {{ __('Pressure') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('temperature')">
+                {{ __('Temperature') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('delivery')">
+                {{ __('Pengiriman') }}
+            </x-responsive-nav-link>
+
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
