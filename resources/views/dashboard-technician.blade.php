@@ -190,13 +190,12 @@
                                             <thead>
                                               <tr>
                                                 <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Telepon</th>
-                                                <th>Lokasi</th>
-                                                <th>Kecamatan</th>
-                                                <th>Tekanan</th>
-                                                <th>Status</th>
-                                                <th>Aksi</th>
+                                                <th>Chip ID</th>
+                                                <th>User ID</th>
+                                                <th>Temperature</th>
+                                                <th>Uptime</th>
+                                                <th>Memory</th>
+                                                <th>Last Update</th>
                                               </tr>
                                             </thead>
                                             <tbody>
