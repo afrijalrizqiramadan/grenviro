@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('chip_id', 20);
-            $table->date('create_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('create_at');
             $table->text('type_device')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedSmallInteger('service');
