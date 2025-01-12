@@ -124,6 +124,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
             'PowerComponents\\LivewirePowerGrid\\' => 34,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
+            'PhpMqtt\\Client\\' => 15,
             'Pest\\Plugin\\' => 12,
             'Pest\\Laravel\\' => 13,
             'Pest\\Arch\\' => 10,
@@ -138,6 +139,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         ),
         'M' => 
         array (
+            'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
             'Mockery\\' => 8,
         ),
@@ -207,6 +209,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'B' => 
         array (
             'Brick\\Math\\' => 11,
+            'Bluerhinos\\' => 11,
             'BladeUI\\Icons\\' => 14,
             'BladeUI\\Heroicons\\' => 18,
         ),
@@ -428,6 +431,10 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'PhpMqtt\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-mqtt/client/src',
+        ),
         'Pest\\Plugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/pestphp/pest-plugin/src',
@@ -459,6 +466,10 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
+        ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'Monolog\\' => 
         array (
@@ -632,6 +643,10 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
+        'Bluerhinos\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bluerhinos/phpmqtt',
+        ),
         'BladeUI\\Icons\\' => 
         array (
             0 => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src',
@@ -648,6 +663,8 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\MqttListener' => __DIR__ . '/../..' . '/app/Console/Commands/MqttListener.php',
+        'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Http\\Controllers\\AktuatorController' => __DIR__ . '/../..' . '/app/Http/Controllers/AktuatorController.php',
         'App\\Http\\Controllers\\Api\\PlaceController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/PlaceController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
@@ -677,6 +694,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'App\\Http\\Controllers\\SensorDataController' => __DIR__ . '/../..' . '/app/Http/Controllers/SensorDataController.php',
         'App\\Http\\Controllers\\SpaceController' => __DIR__ . '/../..' . '/app/Http/Controllers/SpaceController.php',
         'App\\Http\\Controllers\\TemperatureController' => __DIR__ . '/../..' . '/app/Http/Controllers/TemperatureController.php',
+        'App\\Http\\Controllers\\WeatherController' => __DIR__ . '/../..' . '/app/Http/Controllers/WeatherController.php',
         'App\\Http\\Middleware\\CheckLockScreen' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckLockScreen.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
@@ -713,6 +731,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'BladeUI\\Icons\\Generation\\IconGenerator' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/Generation/IconGenerator.php',
         'BladeUI\\Icons\\IconsManifest' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/IconsManifest.php',
         'BladeUI\\Icons\\Svg' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/Svg.php',
+        'Bluerhinos\\phpMQTT' => __DIR__ . '/..' . '/bluerhinos/phpmqtt/phpMQTT.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
         'Brick\\Math\\BigNumber' => __DIR__ . '/..' . '/brick/math/src/BigNumber.php',
@@ -3991,6 +4010,8 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'MyCLabs\\Enum\\Enum' => __DIR__ . '/..' . '/myclabs/php-enum/src/Enum.php',
+        'MyCLabs\\Enum\\PHPUnit\\Comparator' => __DIR__ . '/..' . '/myclabs/php-enum/src/PHPUnit/Comparator.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DirectoryNotFoundException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
@@ -5369,6 +5390,39 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'PharIo\\Version\\VersionConstraintParser' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintParser.php',
         'PharIo\\Version\\VersionConstraintValue' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintValue.php',
         'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber.php',
+        'PhpMqtt\\Client\\Concerns\\GeneratesRandomClientIds' => __DIR__ . '/..' . '/php-mqtt/client/src/Concerns/GeneratesRandomClientIds.php',
+        'PhpMqtt\\Client\\Concerns\\OffersHooks' => __DIR__ . '/..' . '/php-mqtt/client/src/Concerns/OffersHooks.php',
+        'PhpMqtt\\Client\\Concerns\\TranscodesData' => __DIR__ . '/..' . '/php-mqtt/client/src/Concerns/TranscodesData.php',
+        'PhpMqtt\\Client\\Concerns\\ValidatesConfiguration' => __DIR__ . '/..' . '/php-mqtt/client/src/Concerns/ValidatesConfiguration.php',
+        'PhpMqtt\\Client\\Concerns\\WorksWithBuffers' => __DIR__ . '/..' . '/php-mqtt/client/src/Concerns/WorksWithBuffers.php',
+        'PhpMqtt\\Client\\ConnectionSettings' => __DIR__ . '/..' . '/php-mqtt/client/src/ConnectionSettings.php',
+        'PhpMqtt\\Client\\Contracts\\MessageProcessor' => __DIR__ . '/..' . '/php-mqtt/client/src/Contracts/MessageProcessor.php',
+        'PhpMqtt\\Client\\Contracts\\MqttClient' => __DIR__ . '/..' . '/php-mqtt/client/src/Contracts/MqttClient.php',
+        'PhpMqtt\\Client\\Contracts\\Repository' => __DIR__ . '/..' . '/php-mqtt/client/src/Contracts/Repository.php',
+        'PhpMqtt\\Client\\Exceptions\\ClientNotConnectedToBrokerException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/ClientNotConnectedToBrokerException.php',
+        'PhpMqtt\\Client\\Exceptions\\ConfigurationInvalidException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/ConfigurationInvalidException.php',
+        'PhpMqtt\\Client\\Exceptions\\ConnectingToBrokerFailedException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/ConnectingToBrokerFailedException.php',
+        'PhpMqtt\\Client\\Exceptions\\DataTransferException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/DataTransferException.php',
+        'PhpMqtt\\Client\\Exceptions\\InvalidMessageException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/InvalidMessageException.php',
+        'PhpMqtt\\Client\\Exceptions\\MqttClientException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/MqttClientException.php',
+        'PhpMqtt\\Client\\Exceptions\\PendingMessageAlreadyExistsException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/PendingMessageAlreadyExistsException.php',
+        'PhpMqtt\\Client\\Exceptions\\PendingMessageNotFoundException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/PendingMessageNotFoundException.php',
+        'PhpMqtt\\Client\\Exceptions\\ProtocolNotSupportedException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/ProtocolNotSupportedException.php',
+        'PhpMqtt\\Client\\Exceptions\\ProtocolViolationException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/ProtocolViolationException.php',
+        'PhpMqtt\\Client\\Exceptions\\RepositoryException' => __DIR__ . '/..' . '/php-mqtt/client/src/Exceptions/RepositoryException.php',
+        'PhpMqtt\\Client\\Logger' => __DIR__ . '/..' . '/php-mqtt/client/src/Logger.php',
+        'PhpMqtt\\Client\\Message' => __DIR__ . '/..' . '/php-mqtt/client/src/Message.php',
+        'PhpMqtt\\Client\\MessageProcessors\\BaseMessageProcessor' => __DIR__ . '/..' . '/php-mqtt/client/src/MessageProcessors/BaseMessageProcessor.php',
+        'PhpMqtt\\Client\\MessageProcessors\\Mqtt311MessageProcessor' => __DIR__ . '/..' . '/php-mqtt/client/src/MessageProcessors/Mqtt311MessageProcessor.php',
+        'PhpMqtt\\Client\\MessageProcessors\\Mqtt31MessageProcessor' => __DIR__ . '/..' . '/php-mqtt/client/src/MessageProcessors/Mqtt31MessageProcessor.php',
+        'PhpMqtt\\Client\\MessageType' => __DIR__ . '/..' . '/php-mqtt/client/src/MessageType.php',
+        'PhpMqtt\\Client\\MqttClient' => __DIR__ . '/..' . '/php-mqtt/client/src/MqttClient.php',
+        'PhpMqtt\\Client\\PendingMessage' => __DIR__ . '/..' . '/php-mqtt/client/src/PendingMessage.php',
+        'PhpMqtt\\Client\\PublishedMessage' => __DIR__ . '/..' . '/php-mqtt/client/src/PublishedMessage.php',
+        'PhpMqtt\\Client\\Repositories\\MemoryRepository' => __DIR__ . '/..' . '/php-mqtt/client/src/Repositories/MemoryRepository.php',
+        'PhpMqtt\\Client\\SubscribeRequest' => __DIR__ . '/..' . '/php-mqtt/client/src/SubscribeRequest.php',
+        'PhpMqtt\\Client\\Subscription' => __DIR__ . '/..' . '/php-mqtt/client/src/Subscription.php',
+        'PhpMqtt\\Client\\UnsubscribeRequest' => __DIR__ . '/..' . '/php-mqtt/client/src/UnsubscribeRequest.php',
         'PhpOption\\LazyOption' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/LazyOption.php',
         'PhpOption\\None' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/None.php',
         'PhpOption\\Option' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Option.php',
@@ -6514,7 +6568,7 @@ class ComposerStaticInit6cd26d9d4646bf74d1c4416e8b77b252
         'Spatie\\Permission\\Traits\\HasRoles' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/HasRoles.php',
         'Spatie\\Permission\\Traits\\RefreshesPermissionCache' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/RefreshesPermissionCache.php',
         'Spatie\\Permission\\WildcardPermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/WildcardPermission.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
         'Symfony\\Component\\Clock\\Clock' => __DIR__ . '/..' . '/symfony/clock/Clock.php',
         'Symfony\\Component\\Clock\\ClockAwareTrait' => __DIR__ . '/..' . '/symfony/clock/ClockAwareTrait.php',
         'Symfony\\Component\\Clock\\ClockInterface' => __DIR__ . '/..' . '/symfony/clock/ClockInterface.php',

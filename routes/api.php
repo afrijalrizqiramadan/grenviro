@@ -7,6 +7,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AktuatorController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\DB;
 
 
 /*
@@ -28,6 +29,16 @@ Route::post('/update-status/{id}', [DeliveryController::class, 'updateStatus']);
 Route::get('/sensor-pressure/{id_device}', [DashboardController::class, 'getPressureData']);
 Route::get('/sensor-temperature/{id_device}', [DashboardController::class, 'getTemperatureData']);
 
+Route::post('/mqtt-data', function (Request $request) {
+    $data = $request->all();
+    DB::table('history_sensors')->insert([
+        'pressure' => $data['temperature'],
+        'temperature' => $data['humidity'],
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+    return response()->json(['success' => true]);
+});
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
