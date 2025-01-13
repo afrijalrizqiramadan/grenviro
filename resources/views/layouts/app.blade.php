@@ -24,7 +24,6 @@
         <script src="{{asset('assets/js/template.js')}}"></script>
         <script src="{{asset('assets/vendors/chart.js/Chart.min.js')}}"></script>
         <script src="{{asset('assets/js/chart.js')}}"></script>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 
         @livewireStyles
