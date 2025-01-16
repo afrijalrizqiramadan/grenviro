@@ -28,12 +28,10 @@ class UserRolePermissionSeeder extends Seeder
             'email' => 'administrator@gmail.com',
             'name' => 'administrator',
         ],$default_user_value));
-
         $customer=User::create(array_merge([
             'email' => 'customer@gmail.com',
             'name' => 'customer',
         ],$default_user_value));
-
         $technician=User::create(array_merge([
             'email' => 'technician@gmail.com',
             'name' => 'technician',
@@ -42,10 +40,15 @@ class UserRolePermissionSeeder extends Seeder
             'email' => 'it@gmail.com',
             'name' => 'it',
         ],$default_user_value));
+        $driver=User::create(array_merge([
+            'email' => 'driver@gmail.com',
+            'name' => 'Driver',
+        ],$default_user_value));
         $role_administrator=Role::create(['name'=> 'administrator']);
         $role_customer=Role::create(['name'=> 'customer']);
         $role_technician=Role::create(['name'=> 'technician']);
         $role_it=Role::create(['name'=> 'it']);
+        $role_driver=Role::create(['name'=> 'driver']);
 
 
         $permissions = [
@@ -61,6 +64,7 @@ class UserRolePermissionSeeder extends Seeder
         $customer->assignRole($role_customer);
         $technician->assignRole($role_technician);
         $it->assignRole($role_it);
+        $driver->assignRole($role_driver);
 
     }
 
