@@ -4,16 +4,19 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use PhpMqtt\Client\MqttClient;
+use PhpMqtt\Client\Exceptions\MqttClientException;
 use Illuminate\Support\Facades\DB;
 
 class MqttListener extends Command
 {
-    protected $signature = 'mqtt:listen'; // Nama perintah artisan
-    protected $description = 'Listen for MQTT messages';
+    protected $signature = 'mqtt:subscribe'; // Nama perintah artisan
+    protected $description = 'Subscribe to MQTT topic and save data to MySQL';
 
     public function handle()
     {
-        $mqtt = new MqttClient('103.163.139.98', 1883, 'laravelListener');
+        try {
+
+        $mqtt = new MqttClient('103.163.139.98', 1883, 'laravel-mqtt-client');
         $mqtt->connect();
 
         $mqtt->subscribe('iot/+/+', function (string $topic, string $message) {
@@ -52,5 +55,8 @@ class MqttListener extends Command
             }
         });
         $mqtt->loop(true);
+    } catch (MqttClientException $e) {
+        $this->error('MQTT Exception: ' . $e->getMessage());
+    }
     }
 }
