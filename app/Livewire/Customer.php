@@ -37,7 +37,7 @@ final class Customer extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DB::table('Customers');
+        return DB::table('customers');
     }
 
     public function fields(): PowerGridFields
