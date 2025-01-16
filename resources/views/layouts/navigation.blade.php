@@ -70,9 +70,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="m-1">
-                <button onclick="window.location.href='{{ route('lock.screen') }}" type="button" class="btn btn-inverse-danger btn-icon">
+                {{-- <button onclick="window.location.href='{{ route('lock.screen') }}" type="button" class="btn btn-inverse-danger btn-icon">
                     <i class="mdi mdi-power"></i>
-                  </button>
+                  </button> --}}
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

@@ -15,7 +15,7 @@ class PressureController extends Controller
         $user = $request->user();
 
         if($user->hasRole('administrator')) {
-            $latestPressures = DataSensor::select('customers.id','customers.name','customers.location', 'data_sensors.device_id', 'data_sensors.pressure')
+            $latestPressures = DataSensor::select('customers.id','customers.name','customers.telp','customers.location', 'data_sensors.device_id', 'data_sensors.pressure')
             ->leftJoin('customers', 'data_sensors.device_id', '=', 'customers.device_id')
             ->whereIn('data_sensors.id', function ($query) {
                 $query->selectRaw('MAX(id)')
@@ -52,15 +52,15 @@ class PressureController extends Controller
             $pressure = $sensorData->pluck('pressure');
             $timestamp = $sensorData->pluck('timestamp');
 
-            $latestPressures = DataSensor::select('customers.name', 'data_sensors.device_id', 'data_sensors.pressure')
+            $latestPressures = DataSensor::select('customers.name', 'data_sensors.device_id', 'data_sensors.pressure', 'data_sensors.temperature')
             ->leftJoin('customers', 'data_sensors.device_id', '=', 'customers.device_id')
-            ->whereIn('data_sensors.id', function ($query) {
-                $query->selectRaw('MAX(id)')
-                      ->from('data_sensors')
-                      ->groupBy('device_id');
+            ->whereColumn('data_sensors.id', function ($subQuery) {
+                $subQuery->selectRaw('MAX(id)')
+                    ->from('data_sensors as ds')
+                    ->whereColumn('ds.device_id', 'data_sensors.device_id');
             })
             ->get();
-
+            
         return view('admin/historypressure', compact('latestPressures'));
         }
         elseif($user->hasRole('technician')) {

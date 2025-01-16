@@ -55,14 +55,23 @@ final class Customer extends PowerGridComponent
                     e($customer->maps),
                 );
             })
-            ->add('images')
             ->add('registration_date_formatted', fn ($model) => Carbon::parse($model->registration_date)->format('d/m/Y'))
             ->add('type')
             ->add('capacity')
-            ->add('province')
-            ->add('regency')
-            ->add('district')
-            ->add('village')
+            ->add('province', function ($customer) {
+                return \Indonesia::findProvince($customer->province)?->name ?? '-';
+            })
+            ->add('regency', function ($customer) {
+                return \Indonesia::findCity($customer->regency)?->name ?? '-';
+            })
+            ->add('district', function ($customer) {
+                return \Indonesia::findDistrict($customer->district)?->name ?? '-';
+            })
+
+            ->add('village', function ($customer) {
+                return \Indonesia::findVillage($customer->village)?->name ?? '-';
+            })
+        
             ->add('status', function ($customer) {
                 return sprintf(
                     '<span class="badge badge-info bg-success me-1"style="color: white;">%s</span>',
@@ -76,7 +85,7 @@ final class Customer extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
 
-            Column::make('Name', 'name')
+            Column::make('Nama', 'name')
                 ->sortable()
                 ->searchable(),
 
@@ -88,50 +97,46 @@ final class Customer extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Location', 'location')
+            Column::make('Lokasi', 'location')
                 ->sortable()
                 ->searchable(),
 
-                Column::make('Maps', 'maps')
+                Column::make('Peta', 'maps')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Images', 'images')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Registration date', 'registration_date_formatted', 'registration_date')
+            Column::make('Tanggal Pendaftaran', 'registration_date_formatted', 'registration_date')
                 ->sortable(),
 
-            Column::make('Type', 'type')
+            Column::make('Tipe', 'type')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Capacity', 'capacity')
+            Column::make('Kapasitas', 'capacity')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Province', 'province')
+            Column::make('Provinsi', 'province')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Regency', 'regency')
+            Column::make('Kota', 'regency')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('District', 'district')
+            Column::make('Kecamatan', 'district')
+                ->sortable()
+                ->searchable(),
+            Column::make('Desa', 'village')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Village', 'village')
-                ->sortable()
-                ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
 
-                Column::action('Action'),
+            //     Column::action('Action'),
 
         ];
     }
@@ -146,19 +151,19 @@ final class Customer extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+         redirect()->route('customer.edit', ['customer' => $rowId]);
     }
 
-    public function actions($row): array
-    {
-        return [
-            Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
-        ];
-    }
+    // public function actions($row): array
+    // {
+    //     return [
+    //         Button::add('edit')
+    //             ->slot('Edit')
+    //             ->id()
+    //             ->class('btn btn-primary btn-sm')
+    //             ->dispatch('edit', ['rowId' => $row->id])
+    //     ];
+    // }
 
     /*
     public function actionRules($row): array

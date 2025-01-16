@@ -12,6 +12,17 @@
 
     </style>
 @endpush
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <div class="container-fluid page-body-wrapper">
          <div class="main-panel">
            <div class="content-wrapper">
@@ -20,7 +31,7 @@
                    <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Tambah Pelanggan</h4>
-                        <form  class="form-sample" action="{{ route('customer.store') }}" method="POST">
+                        <form  class="form-sample" action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data" >
                             @csrf
                             <p class="card-description">
                             Personal Info
@@ -38,7 +49,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" maxlength="20" required>
+                                    <input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" maxlength="30" required>
                                 </div>
                               </div>
                             </div>
@@ -48,7 +59,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Telepon</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="number" id="telp" name="telp" value="{{ old('telp') }}" required>
+                                    <input class="form-control" type="number" id="telp" name="telp" value="{{ old('telp') }}" required="required">
                                 </div>
                               </div>
                             </div>
@@ -56,7 +67,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Lokasi</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="text" id="location" name="location" value="{{ old('location') }}" maxlength="20" required>
+                                    <input class="form-control" type="text" id="location" name="location" value="{{ old('location') }}" maxlength="20" required="required">
                                 </div>
                               </div>
                             </div>
@@ -66,7 +77,15 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Kapasitas</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="number" step="any" id="capacity" name="capacity" value="{{ old('capacity') }}" required>
+                                    <input class="form-control" type="number" step="any" id="capacity" name="capacity" value="{{ old('capacity') }}" required="required">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Device ID</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" id="device_id" name="device_id" value="{{ old('device_id') }}" required="required">
                                 </div>
                               </div>
                             </div>
@@ -74,7 +93,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Tanggal Registrasi</label>
                                 <div class="col-sm-9">
-                                    <input  class="form-control" type="date" id="registration_date" name="registration_date" value="{{ old('registration_date') }}" required>
+                                    <input  class="form-control" type="date" id="registration_date" name="registration_date" value="{{ old('registration_date') }}" required="required">
                                 </div>
                               </div>
                             </div>
@@ -84,7 +103,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Tipe</label>
                                 <div class="col-sm-9">
-                                  <select id="type" name="type" value="{{ old('type') }}" required class="form-control">
+                                  <select id="type" name="type" value="{{ old('type') }}" required="required" class="form-control">
                                     <option>Kantor</option>
                                     <option>Pendidikan</option>
                                   </select>
@@ -95,7 +114,7 @@
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-sm-9">
-                                <select id="status" name="status" required>
+                                <select id="status" name="status" required="required">
                                     <option value="Aktif" {{ old('status') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
                                     <option value="Tidak Aktif" {{ old('status') == 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
                                 </select>
@@ -106,13 +125,9 @@
                         <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Upload Gambar</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-sm-6">
-                                <input id="images" name="images" value="{{ old('images') }}" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                  </span>
-                            </div>
+                            <img id="previewImage" class="mb-2" src="{{ $customer->getImage() }}" width="100%" alt="">
+                            <input type="file" name="images" id="images" accept="image/*" required="required">
+
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -135,14 +150,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">State</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" />
-                                </div>
-                              </div>
-                            </div>
+                           
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -153,8 +161,8 @@
                                     $provinces = new App\Http\Controllers\LocationController;
                                     $provinces= $provinces->provinces();
                                 @endphp
-                                <select class="form-control" name="provinsi" id="provinsi" required>
-                                    <option>==Pilih Salah Satu==</option>
+                                <select class="form-control" name="provinsi" id="provinsi" required="required">
+                                    <option value="">==Pilih Salah Satu==</option>
                                     @foreach ($provinces as $item)
                                         <option value="{{ $item->id ?? '' }}">{{ $item->name ?? '' }}</option>
                                     @endforeach
@@ -165,8 +173,7 @@
                               <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="kota">Kabupaten / Kota</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="kota" id="kota" required>
-                                        <option>==Pilih Salah Satu==</option>
+                                    <select class="form-control" name="kota" id="kota" required="required">
                                     </select>                                </div>
                               </div>
                             </div>
@@ -176,8 +183,7 @@
                               <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="kecamatan">Kecamatan</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="kecamatan" id="kecamatan" required>
-                                        <option>==Pilih Salah Satu==</option>
+                                    <select class="form-control" name="kecamatan" id="kecamatan" required="required">
                                     </select>                                </div>
                               </div>
                             </div>
@@ -185,8 +191,7 @@
                               <div class="form-group row">
                                 <label class="col-md-3 col-form-label" for="desa">Desa</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" name="desa" id="desa" required>
-                                        <option>==Pilih Salah Satu==</option>
+                                    <select class="form-control" name="desa" id="desa" required="required">
                                     </select>                                </div>
                               </div>
                             </div>
@@ -204,7 +209,7 @@
                                 <label class="col-md-3 col-form-label" for="desa">Latitude Longitude</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="latlong"
-                                class="form-control @error('latlong') is-invalid @enderror" readonly id="">
+                                class="form-control @error('latlong') is-invalid @enderror" readonly id="" required="required">
                             @error('latlong')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -227,6 +232,7 @@
 
        </div>
    </div>
+   
    @push('javascript')
    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"

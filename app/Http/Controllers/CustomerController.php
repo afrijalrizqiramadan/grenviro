@@ -40,45 +40,52 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
+
         // Lakukan validasi data
-        $validated = $request->validate([
+        
+        $request->validate([
             'name' => 'required|string|max:25',
             'address' => 'required|string',
-            'telp' => 'required|integer',
-            'email' => 'required|email|max:20',
+            'telp' => 'required',
             'location' => 'required|string|max:20',
             'maps' => 'nullable|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'images' => 'required|string|max:20',
+            'images' => 'image|mimes:png,jpg,jpeg',
             'registration_date' => 'required|date',
             'type' => 'required|string|max:20',
             'capacity' => 'required|numeric',
             'device_id' => 'required|integer',
-            'province' => 'required|integer',
-            'regency' => 'required|integer',
-            'district' => 'required|integer',
-            'village' => 'required|integer',
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
 
-        // melakukan pengecekan ketika ada file gambar yang akan di input
         $customer = new Customer();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
             $uploadFile = time() . '_' . $file->getClientOriginalName();
             $file->move('uploads/imgCover/', $uploadFile);
-            $customer->image = $uploadFile;
+            $customer->images = $uploadFile;
         }
 
-        // Memasukkan nilai untuk masing-masing field pada tabel space berdasarkan inputan dari
-        // form create
-        //return dd($spaces);
+        $latlong = $request->input('latlong'); // Format: "latitude,longitude"
+        [$latitude, $longitude] = explode(',', $latlong);
 
-        // proses simpan data
+        $customer->name = $request->name;
+        $customer->address = $request->address;
+        $customer->telp = $request->telp;
+        $customer->location = $request->location;
+        $customer->maps = $request->maps;
+        $customer->latitude = $latitude;
+        $customer->longitude = $longitude;
+        $customer->registration_date = $request->registration_date;
+        $customer->type = $request->type;
+        $customer->capacity = $request->capacity;
+        $customer->device_id = $request->device_id;
+        $customer->province = $request->provinsi;
+        $customer->regency = $request->kota;
+        $customer->district = $request->kecamatan;
+        $customer->village = $request->desa;
+        $customer->status = $request->status;
+
         $customer->save();
-
-        // redirect ke halaman index space
         if ($customer) {
             return redirect()->route('customer.index')->with('success', 'Data berhasil disimpan');
         } else {
@@ -96,63 +103,75 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Space $space)
+    public function edit(Customer $customer)
     {
-        // mencari data space yang dipilih berdasarkan id
-        // kemudian menampilkan data tersebut ke form edit space
-        $space = Space::findOrFail($space->id);
-        return view('space.edit', [
-            'space' => $space
+        $provinces = \Indonesia::allProvinces();
+        $centrepoint = CentrePoint::get()->first();
+        $customer = Customer::findOrFail($customer->id);
+        return view('customer.edit', [
+            'customer' => $customer,
+            'provinces' => $provinces,
+            'centrepoint' => $centrepoint
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Space $space)
+    public function update(Request $request, Customer $customer)
     {
         // Menjalankan validasi
         $validated = $request->validate([
-            'name' => 'required',
-            'content' => 'required',
-            'image' => 'image|mimes:png,jpg,jpeg',
-            'location' => 'required'
-        ]);
+            'name' => 'required|string|max:25',
+            'address' => 'required|string',
+            'telp' => 'required',
+            'location' => 'required|string|max:20',
+            'maps' => 'nullable|string',
+            'images' => 'image|mimes:png,jpg,jpeg',
+            'registration_date' => 'required|date',
+            'type' => 'required|string|max:20',
+            'capacity' => 'required|numeric',
+            'device_id' => 'required|integer',
+            'status' => 'required|in:Aktif,Tidak Aktif',
+            ]);
 
-        // Jika data yang akan diganti ada pada tabel space
-        // cek terlebih dahulu apakah akan mengganti gambar atau tidak
-        // jika gambar diganti hapus terlebuh dahulu gambar lama
-        $space = Space::findOrFail($space->id);
+        $customer = Customer::findOrFail($customer->id);
         if ($request->hasFile('image')) {
-
-            if (File::exists("uploads/imgCover/" . $space->image)) {
-                File::delete("uploads/imgCover/" . $space->image);
+            if (File::exists("uploads/imgCover/" . $customer->image)) {
+                File::delete("uploads/imgCover/" . $customer->image);
             }
 
             $file = $request->file("image");
             //$uploadFile = StoreImage::replace($space->image,$file->getRealPath(),$file->getClientOriginalName());
             $uploadFile = time() . '_' . $file->getClientOriginalName();
             $file->move('uploads/imgCover/', $uploadFile);
-            $space->image = $uploadFile;
+            $customer->image = $uploadFile;
         }
+        $latlong = $request->input('latlong'); // Format: "latitude,longitude"
+        [$latitude, $longitude] = explode(',', $latlong);
 
         // Lakukan Proses update data ke tabel space
-        $space->update([
+        $customer->update([
             'name' => $request->name,
+            'address' => $request->address,
+            'telp' => $request->telp,
             'location' => $request->location,
-            'content' => $request->content,
-            'slug' => Str::slug($request->name, '-'),
+            'maps' => $request->maps,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'registration_date' => $request->registration_date,
+            'type' => $request->type,
+            'capacity' => $request->capacity,
+            'device_id' => $request->device_id,
+            'province' => $request->provinsi,
+            'regency' => $request->kota,
+            'district' => $request->kecamatan,
+            'village' => $request->desa,
+            'status' => $request->status
         ]);
 
         // redirect ke halaman index space
-        if ($space) {
-            return redirect()->route('space.index')->with('success', 'Data berhasil diupdate');
+        if ($customer) {
+            return redirect()->route('customer.index')->with('success', 'Data berhasil diupdate');
         } else {
-            return redirect()->route('space.index')->with('error', 'Data gagal diupdate');
+            return redirect()->route('customer.index')->with('error', 'Data gagal diupdate');
         }
     }
 
@@ -165,7 +184,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         // hapus keseluruhan data pada tabel space begitu juga dengan gambar yang disimpan
-        $space = Space::findOrFail($id);
+        $space = Customer::findOrFail($id);
         if (File::exists("uploads/imgCover/" . $space->image)) {
             File::delete("uploads/imgCover/" . $space->image);
         }

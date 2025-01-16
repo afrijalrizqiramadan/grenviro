@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Village;
 
 class Customer extends Model
 {
@@ -41,4 +44,5 @@ class Customer extends Model
 
         return 'https://via.placeholder.com/500x500.png?text=No+Cover';
     }
+    
 }

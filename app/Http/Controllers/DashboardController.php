@@ -25,6 +25,7 @@ class DashboardController extends Controller
             $user = Auth::user(); // Mendapatkan pengguna yang sedang login
             $customerCount = Customer::count(); // Menghitung jumlah data customer
             $averagePressure = DataSensor::avg('pressure');
+            $lowPressureCount = DataSensor::where('pressure', '<', 20)->count();
 
             $minpressuresensor = DataSensor::join('devices', 'data_sensors.device_id', '=', 'devices.id')
             ->join('customers', 'devices.id', '=', 'customers.device_id')
@@ -37,7 +38,7 @@ class DashboardController extends Controller
             ->whereMonth('delivery_date', now()->month)
             ->count();
 
-              return view('dashboard-administrator', compact('countDeliveries','customerCount','averagePressure', 'minpressuresensor'));
+              return view('dashboard-administrator', compact('countDeliveries','customerCount','lowPressureCount','averagePressure', 'minpressuresensor'));
      }
         elseif($user->hasRole('customer')) {
             $user = Auth::user(); // Mendapatkan pengguna yang sedang login
@@ -90,6 +91,7 @@ class DashboardController extends Controller
             $user = Auth::user(); // Mendapatkan pengguna yang sedang login
             $customerCount = Customer::count(); // Menghitung jumlah data customer
             $averagePressure = DataSensor::avg('pressure');
+            $lowPressureCount = DataSensor::where('pressure', '<', 20)->count();
 
             $minpressuresensor = DataSensor::join('devices', 'data_sensors.device_id', '=', 'devices.id')
             ->join('customers', 'devices.id', '=', 'customers.device_id')
@@ -102,7 +104,7 @@ class DashboardController extends Controller
             ->whereMonth('delivery_date', now()->month)
             ->count();
 
-              return view('dashboard-technician', compact('deviceData','countDeliveries','customerCount','averagePressure', 'minpressuresensor'));
+              return view('dashboard-technician', compact('deviceData','countDeliveries','lowPressureCount','customerCount','averagePressure', 'minpressuresensor'));
          }
     }
     public function getPressureData($id_device)

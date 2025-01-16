@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
             $table->string('name', 25);
             $table->text('address');
-            $table->unsignedInteger('telp');
-            $table->string('email', 20);
-            $table->string('location', 20);
+            $table->string('telp', 13);
+            $table->string('email', 30)->nullable();
+            $table->string('location',50);
             $table->text('maps')->nullable();
             $table->double('latitude');
             $table->double('longitude');
-            $table->string('images', 20);
+            $table->string('images', 30);
             $table->date('registration_date');
             $table->string('type', 20);
             $table->float('capacity');
