@@ -38,7 +38,7 @@ class MqttListener extends Command
                 ]);
         
                 // Simpan atau perbarui data ke tabel data_sensor
-                DB::table('data_sensor')->updateOrInsert(
+                DB::table('data_sensors')->updateOrInsert(
                     ['device_id' => $device_id],
                     [
                         'pressure' => $data['pressure'],
