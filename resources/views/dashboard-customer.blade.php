@@ -242,7 +242,7 @@
                                         " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
                                         <h4 class="card-title mb-2">Tekanan Gas</h4>
 
-                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:i:s')}}</small>                                    </div>
+                                        <small id="pressure-date" class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:i:s')}}</small>                                    </div>
                                 </div>
                                 <br>
                                 <br>
@@ -251,7 +251,7 @@
                                         <h2 id="temperature-data" class="h2 mb-2 font-weight-bold">0 C</h2>
 
                                         <h4 class="card-title mb-2">Suhu</h4>
-                                        <small class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:i:s')}}</small>                                    </div>
+                                        <small id="temperature-date" class="text-muted">{{ \Carbon\Carbon::parse($latestTime)->translatedFormat('d F Y H:i:s')}}</small>                                    </div>
                                 </div>
                             </row>
 
@@ -358,6 +358,7 @@
                                     method: 'GET',
                                     success: function(response) {
                                         $('#pressure-data').text(response.pressure+ ' psi');
+                                        $('#pressure-date').text(response.timestamp);
                                     },
                                     error: function() {
                                         $('#pressure-data').text('Error retrieving data.');
@@ -370,6 +371,7 @@
                                     method: 'GET',
                                     success: function(response) {
                                         $('#temperature-data').text(response.temperature+ ' C');
+                                        $('#temperature-date').text(response.timestamp);
                                     },
                                     error: function() {
                                         $('#temperature-data').text('Error retrieving data.');

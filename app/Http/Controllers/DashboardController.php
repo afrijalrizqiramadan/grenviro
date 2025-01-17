@@ -109,13 +109,13 @@ class DashboardController extends Controller
     }
     public function getPressureData($id_device)
     {
-        $data = DataSensor::where('device_id', 1)->latest()->first(['pressure']);
+        $data = DataSensor::where('device_id', $id_device)->latest()->first(['pressure', 'timestamp']);
         return response()->json($data);
     }
 
     public function getTemperatureData($id_device)
     {
-        $data = DataSensor::where('device_id', 1)->latest()->first(['temperature']);
+        $data = DataSensor::where('device_id', $id_device)->latest()->first(['temperature', 'timestamp']);
         return response()->json($data);
     }
 
