@@ -1,8 +1,6 @@
 <x-app-layout>
     @push('javascript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 @endpush
     <div class="container-fluid page-body-wrapper">
@@ -95,8 +93,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="position-relative">
-                                                    <img src="{{asset('assets/images/customer/'. $images)}}" class="w-500 rounded-3"
-                                                    alt="">
+                                                    <img src="{{ asset('assets/images/customer/' . $images) }}" class="rounded-3 w-100"
+                                                        alt="">
                                                     {{-- <div class="live-info badge badge-success">Live</div> --}}
                                                 </div>
                                             </div>
