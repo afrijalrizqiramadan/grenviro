@@ -141,13 +141,7 @@ final class Customer extends PowerGridComponent
         ];
     }
 
-    public function filters(): array
-    {
-        return [
-            Filter::datepicker('registration_date'),
-        ];
-    }
-
+ 
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {

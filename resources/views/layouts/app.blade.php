@@ -18,9 +18,9 @@
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
         <link href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('assets/vendors/base/vendor.bundle.base.css')}}" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-        <script src="{{asset('vendors/base/vendor.bundle.base.js')}}"></script>
         <script src="{{asset('assets/js/template.js')}}"></script>
         <script src="{{asset('assets/vendors/chart.js/Chart.min.js')}}"></script>
         <script src="{{asset('assets/js/chart.js')}}"></script>
