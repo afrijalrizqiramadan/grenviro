@@ -41,56 +41,62 @@
                         </div>
                     </div>
                 </div>
-                                           <br>
+                <br>
 
                 <div class="row">
                     <div class="col-sm-4 flex-column d-flex stretch-card">
                         <div class="row flex-grow">
                             <div class="col-sm-12 grid-margin stretch-card">
                                 <div class="card">
-                                    <div class="card-body"><button type="button" class="btn mx-2 btn-inverse-success btn-icon"onclick="window.location.href='{{$maps}}'">
-                                        <i class="mdi mdi-map-marker"></i>
-                                      </button>
-                                    <span class="h3 font-weight-bold text-dark">{{$location}}</span>
-                                    <br>
-                                    <br>
+                                    <div class="card-body"><button type="button"
+                                            class="btn mx-2 btn-inverse-success btn-icon"onclick="window.location.href='{{ $maps }}'">
+                                            <i class="mdi mdi-map-marker"></i>
+                                        </button>
+                                        <span class="h3 font-weight-bold text-dark">{{ $location }}</span>
+                                        <br>
+                                        <br>
                                         <div class="row">
 
                                             <div class="col-lg-6">
 
-    <script type='text/javascript'>
-        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-        var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth();
-        var thisDay = date.getDay(),
-            thisDay = myDays[thisDay];
-        var yy = date.getYear();
-        var year = (yy < 1000) ? yy + 1900 : yy;
-        document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
-        function updateRealTime() {
-            var now = new Date();
-            var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().padStart(2, '0');
-            var seconds = now.getSeconds().toString().padStart(2, '0');
-            var timeString = hours + ':' + minutes + ':' + seconds;
-            document.getElementById('realTime').textContent = timeString;
-        }
-        setInterval(updateRealTime, 1000);
-        updateRealTime();
-    </script>
-<br>
+                                                <script type='text/javascript'>
+                                                    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
+                                                        'November', 'Desember'
+                                                    ];
+                                                    var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+                                                    var date = new Date();
+                                                    var day = date.getDate();
+                                                    var month = date.getMonth();
+                                                    var thisDay = date.getDay(),
+                                                        thisDay = myDays[thisDay];
+                                                    var yy = date.getYear();
+                                                    var year = (yy < 1000) ? yy + 1900 : yy;
+                                                    document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+
+                                                    function updateRealTime() {
+                                                        var now = new Date();
+                                                        var hours = now.getHours().toString().padStart(2, '0');
+                                                        var minutes = now.getMinutes().toString().padStart(2, '0');
+                                                        var seconds = now.getSeconds().toString().padStart(2, '0');
+                                                        var timeString = hours + ':' + minutes + ':' + seconds;
+                                                        document.getElementById('realTime').textContent = timeString;
+                                                    }
+                                                    setInterval(updateRealTime, 1000);
+                                                    updateRealTime();
+                                                </script>
+                                                <br>
                                                 <h2 id="realTime" class="h2 text-dark">00:00:00</h2>
                                                 <div class="d-lg-flex align-items-baseline mb-3">
-                                                    <h1 class="text-dark font-weight-bold">23<sup class="font-weight-light"><small>o</small><small class="font-weight-medium">c</small></sup></h1>
+                                                    <h1 class="text-dark font-weight-bold">23<sup
+                                                            class="font-weight-light"><small>o</small><small
+                                                                class="font-weight-medium">c</small></sup></h1>
                                                     <p class="text-muted ms-3">Partly cloudy</p>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="position-relative">
-                                                    <img src="{{asset('assets/images/customer/'. $images)}}" class="w-500 rounded-3"
-                                                    alt="">
+                                                    <img src="{{ asset('assets/images/customer/' . $images) }}"
+                                                        class="w-500 rounded-3" alt="">
                                                     {{-- <div class="live-info badge badge-success">Live</div> --}}
                                                 </div>
                                             </div>
@@ -98,40 +104,41 @@
                                         <br>
                                         <div class="row">
                                             <h4 class="card-title">Riwayat Pengiriman</h4>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Total</th>
-                      <th>Tanggal</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($statuses as $index => $status)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $status->total }}</td>
-                        <td>{{ \Carbon\Carbon::parse($status->delivery_date)->translatedFormat('d F Y')}}</td>
-                        <td><label class="badge
-                             @if($status->status == 'Selesai')
-                                badge-success
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Total</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($statuses as $index => $status)
+                                                            <tr>
+                                                                <td>{{ $index + 1 }}</td>
+                                                                <td>{{ $status->total }}</td>
+                                                                <td>{{ \Carbon\Carbon::parse($status->delivery_date)->translatedFormat('d F Y') }}
+                                                                </td>
+                                                                <td><label
+                                                                        class="badge
+                             @if ($status->status == 'Selesai') badge-success
                             @elseif($status->status == 'Dalam Perjalanan')
                                 badge-warning
                             @elseif($status->status == 'Batal')
                                 badge-danger
                             @elseif($status->status == 'Disiapkan')
-                                badge-info
-                            @endif
-                            ">{{ $status->status }}</label></td>
-                    </tr>
-                    @endforeach
+                                badge-info @endif
+                            ">{{ $status->status }}</label>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
 
 
-                  </tbody>
-                </table>
-              </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <!--<div class="col-sm-12 mt-4 mt-lg-0">-->
                                             <!--	<div class="bg-primary text-white px-4 py-4 card">-->
                                             <!--		<div class="row">-->
@@ -179,88 +186,91 @@
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
                                 <div class="card sale-diffrence-border">
                                     <div class="card-body">
-                                        <h2 class="text-dark mb-2 font-weight-bold">{{$capacity}}</h2></h2>
+                                        <h2 class="text-dark mb-2 font-weight-bold">{{ $capacity }}</h2>
+                                        </h2>
                                         <h4 class="card-title mb-2">Kapasitas Tabung</h4>
                                         <small class="text-muted"></small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
-                                    <div class="card sale-diffrence-border">
+                                <div class="card sale-diffrence-border">
                                     <div class="card-body">
-                                        <h2 class="text-dark mb-2 font-weight-bold">{{$status_device}}</h2>
+                                        <h2 class="text-dark mb-2 font-weight-bold">{{ $status_device }}</h2>
                                         <h4 class="card-title mb-2">Status Device</h4>
                                         <small class="text-muted"></small>
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
                                 <div class="card sale-diffrence-border">
                                     <div class="card-body">
-                                        <h2 class="text-dark mb-2 font-weight-bold">{{$registration_date_device}}</h2>
+                                        <h2 class="text-dark mb-2 font-weight-bold">{{ $registration_date_device }}</h2>
                                         <h4 class="card-title mb-2">Tanggal Bergabung</h4>
                                         <small class="text-muted"></small>
                                     </div>
                                 </div>
                             </div>
-                                <div class="col-lg-4 d-flex grid-margin stretch-card">
+                            <div class="col-lg-4 d-flex grid-margin stretch-card">
                                 <div class="card bg-primary">
                                     <div class="card-body text-white">
-                                        <h2 class="h2 text-white mb-2 font-weight-bold">{{$latestPressure}} psi</h2>
+                                        <h2 class="h2 text-white mb-2 font-weight-bold">{{ $latestPressure }} bar</h2>
                                         <div class="progress mb-3">
                                             <div class="progress-bar
-                                            @if($latestPressure < 20)
-                                                bg-danger
+                                            @if ($latestPressure < 20) bg-danger
                                             @elseif($latestPressure >= 20 && $latestPressure < 40)
                                                 bg-warning
                                             @else
-                                                bg-success
-                                            @endif
-                                        " role="progressbar" style="width: {{$latestPressure}}%" aria-valuenow="{{$latestPressure}}" aria-valuemin="0" aria-valuemax="100"></div>                                        </div>
+                                                bg-success @endif
+                                        "
+                                                role="progressbar" style="width: {{ $latestPressure }}%"
+                                                aria-valuenow="{{ $latestPressure }}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
                                         <p class="pb-0 mb-0">Tekanan Gas</p>
                                     </div>
                                 </div>
                             </div>
-                             <div class="col-md-8 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-                    <h4 class="card-title">Pressure Monitor</h4>
-                    <canvas id="sensorChart" width="800" height="400"></canvas>
+                            <div class="col-md-8 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Pressure Monitor</h4>
+                                        <canvas id="sensorChart" width="800" height="400"></canvas>
 
-            </div>
-    </div>
-                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var ctx = document.getElementById('sensorChart').getContext('2d');
-                            var sensorChart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: {!! json_encode($timestamp) !!},
-                                    datasets: [{
-                                        label: 'Nilai Pressure',
-                                        data: {!! json_encode($pressure) !!},
-                                        fill: false,
-                                        borderColor: 'rgb(75, 192, 192)',
-                                        tension: 0.1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        x: {
-                                            type: 'time',
-                                            time: {
-                                                unit: 'day'
+                        </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var ctx = document.getElementById('sensorChart').getContext('2d');
+                                var sensorChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: {!! json_encode($timestamp) !!},
+                                        datasets: [{
+                                            label: 'Nilai Pressure',
+                                            data: {!! json_encode($pressure) !!},
+                                            fill: false,
+                                            borderColor: 'rgb(75, 192, 192)',
+                                            tension: 0.1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            x: {
+                                                type: 'time',
+                                                time: {
+                                                    unit: 'day'
+                                                }
+                                            },
+                                            y: {
+                                                beginAtZero: true
                                             }
-                                        },
-                                        y: {
-                                            beginAtZero: true
                                         }
                                     }
-                                }
+                                });
                             });
-                        });
-                    </script>
-                </x-app-layout>
+                        </script>
+</x-app-layout>
