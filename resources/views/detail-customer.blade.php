@@ -186,7 +186,7 @@
                             <div class="col-lg-4 d-flex grid-margin stretch-card">
                                 <div class="card sale-diffrence-border">
                                     <div class="card-body">
-                                        <h2 class="text-dark mb-2 font-weight-bold">{{ $capacity }}</h2>
+                                        <h2 class="text-dark mb-2 font-weight-bold">{{ $capacity }} bar</h2>
                                         </h2>
                                         <h4 class="card-title mb-2">Kapasitas Tabung</h4>
                                         <small class="text-muted"></small>
